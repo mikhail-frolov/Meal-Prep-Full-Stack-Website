@@ -1,0 +1,22 @@
+  <div class="hero-image">
+  <div class="hero-text">
+    <h1 style="font-size:90px; color: white; font-weight: bold; ">Get Your Meals Delivered.</h1>
+  <b>Check out our featured meal packages below</b>
+  </div>
+</div>
+
+<div class="content">
+    <h2>Pick a package, choose your meals, achieve your goal - <b><i>it's that simple</i></b></h2>
+
+    <div class="grid-container-allmeals" >
+         {{#each data}}
+        <div class="topmeals"> 
+            <img src="/img/{{this.img}}" width="250px"> <br><br>
+            <span id="title"><b>{{this.title}}</b><br></span>
+            <span id="category"><b>Category:</b> {{this.category}}<br></span>
+            <span id="description">{{this.description}}<br></span>
+            <span id="numofmeals"><b>Meals in package:</b> {{this.meals}}<br></span>
+            <span id="price" style="color: crimson;"><b>{{this.price}}</b><br></span>
+        </div>
+    {{/each}}
+    </div>

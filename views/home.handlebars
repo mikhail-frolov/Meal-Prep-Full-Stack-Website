@@ -1,0 +1,44 @@
+  <div class="hero-image">
+  <div class="hero-text">
+    <h1 style="font-size:90px; color: white; font-weight: bold; ">Get Your Meals Delivered.</h1>
+  <a href="/mealspackages"><b>VIEW MEALS OOPS</b></a>
+  </div>
+</div>
+    
+
+<div class="content">
+    <h2>No cooking, just eating</h2>
+    <div class="grid-container" >
+        <div class="grid-item">
+            <img src="https://cdn.shopify.com/s/files/1/1758/4293/files/Pick_1.gif?14089" alt="" >
+            <h3 >Pick</h3>
+        </div>
+        <div class="grid-item">
+            <img src="https://cdn.shopify.com/s/files/1/1758/4293/files/heat.gif?14089" alt="">
+            <h3 >Heat</h3>
+        </div>
+        <div class="grid-item">
+            <img src="https://cdn.shopify.com/s/files/1/1758/4293/files/eat_1_1.gif?14089" alt="">
+       <h3 >Eat</h3>
+        </div>
+        <div class="grid-item">
+            <img src="https://cdn.shopify.com/s/files/1/1758/4293/files/repeat---Copy.gif?14095" alt="">
+        <h3 >Repeat</h3>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <h2>Our top chiefs are making these fresh meals right now!</h2>
+    <h4>Order some (or all) of these top meals and see why thousands of Canadians stock us in their fridge!</h4>
+    <div class="grid-container-allmeals" >
+         {{#each data}}
+        <div class="topmeals"> 
+            <img src="/img/{{this.img}}" width="250px"> <br><br>
+            <span id="title"><b>{{this.title}}</b> <br><br></span>
+            <span id="price" style="color: red;"><b>{{this.price}}</b><br></span>
+        </div>
+    {{/each}}
+    </div>
+    <br><br><br>
+</div>

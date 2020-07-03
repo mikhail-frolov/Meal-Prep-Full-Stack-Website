@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+<div class="header">
+    <ul>
+        <a href="/"><img style="width: 90px; height: 90px;" src="/img/logo.png" alt="Logo"></a>
+       
+    <li><button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><b>Login</b></button></li>
+
+<!-- implementation for popup login BEGINING-->
+<div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="#" method="post">
+   <!-- container for popup login avatar -->
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img style="width: 180px; height:180px;" src="/img/icon1.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="uname" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+        
+      <button style="background-color: black; color:white; " type="submit">Login</button>
+      <label>
+        <input type="checkbox" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw"><a href="#">Forgot password?</a></span>
+    </div>
+  </form>
+</div>
+<!-- implementation for popup login END--> 
+        <li><a href="/registration"><b>Registration</b></a></li>
+        <li><a href="/mealspackages"><b>Meal Packages</b></a></li>
+        <li><a href="/"><b>Home</b></a></li>
+    </ul>
+    <hr>
+</div>
+    </header>
+    <main>
+{{{body}}}
+    </main>
+    <footer>
+      <hr>
+<p style="text-align:center; color:black; "><b>&copy 2020 LiveFitFoods</b><br><a href="https://www.instagram.com/livefitfoods/"><img style="width: 25px; height: 25px;" src="/img/insst.png" alt="Instagram"></a> <a href="https://www.facebook.com/livefitfood"><img style="width: 30px; height: 30px;" src="/img/fbb.png" alt="Facebook"></a></p>
+    </footer>
+</body>
+<script>
+// Get the modal
+const modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal)  modal.style.display = "none";
+}
+</script>
+</html>
