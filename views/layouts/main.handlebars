@@ -5,52 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
 <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-<div class="header">
-    <ul>
+ <header>
+    <div class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 bg-white border-bottom box-shadow fixed-top">
         <a href="/"><img style="width: 90px; height: 90px;" src="/img/logo.png" alt="Logo"></a>
-       
-    <li><button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><b>Login</b></button></li>
-
-<!-- implementation for popup login BEGINING-->
-<div id="id01" class="modal">
-  
-  <form class="modal-content animate" action="#" method="post">
-   <!-- container for popup login avatar -->
-    <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img style="width: 180px; height:180px;" src="/img/icon1.png" alt="Avatar" class="avatar">
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2" style="color:#7B8689;" href="/">Home</a>
+             <a class="p-2" style="color:#7B8689;" href="/mealspackages">Meal Packages</a>
+            <a class="p-2" style="color:#7B8689;" href="/registration">Registration</a>
+            <a class="p-2" style="color:#7B8689;" href="/login">Login</a>
+        </nav>
     </div>
-
-    <div class="container">
-      <label for="uname"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="uname" required>
-
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
-        
-      <button style="background-color: black; color:white; " type="submit">Login</button>
-      <label>
-        <input type="checkbox" name="remember"> Remember me
-      </label>
-    </div>
-
-    <div class="container" style="background-color:#f1f1f1">
-      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-      <span class="psw"><a href="#">Forgot password?</a></span>
-    </div>
-  </form>
-</div>
-<!-- implementation for popup login END--> 
-        <li><a href="/registration"><b>Registration</b></a></li>
-        <li><a href="/mealspackages"><b>Meal Packages</b></a></li>
-        <li><a href="/"><b>Home</b></a></li>
-    </ul>
-    <hr>
-</div>
-    </header>
+</header>
     <main>
 {{{body}}}
     </main>

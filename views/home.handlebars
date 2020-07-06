@@ -1,41 +1,40 @@
-  <div class="hero-image">
-  <div class="hero-text">
-    <h1 style="font-size:90px; color: white; font-weight: bold; ">Get Your Meals Delivered.</h1>
-  <a href="/mealspackages"><b>VIEW MEALS OOPS</b></a>
-  </div>
+    <div class="jumbotron jumbotron-fluid">
+  <div class="containergif">
+   <h1>Get Your Meals Delivered</h1><br>
+  <a href="/mealspackages" style="text-decoration: none; color: white;">view meals</a>
+    </div>
 </div>
-    
 
 <div class="content">
-    <h2>No cooking, just eating</h2>
+    <h2>No cooking, just eating</h2><br>
     <div class="grid-container" >
         <div class="grid-item">
-            <img src="https://cdn.shopify.com/s/files/1/1758/4293/files/Pick_1.gif?14089" alt="" >
-            <h3 >Pick</h3>
+            <img src="https://cdn.shopify.com/s/files/1/1758/4293/files/Pick_1.gif?14089" class="img-fluid" alt="" >
+            <h5>Pick</h5>
         </div>
         <div class="grid-item">
-            <img src="https://cdn.shopify.com/s/files/1/1758/4293/files/heat.gif?14089" alt="">
-            <h3 >Heat</h3>
+            <img src="https://cdn.shopify.com/s/files/1/1758/4293/files/heat.gif?14089" class="img-fluid" alt="">
+            <h5>Heat</h5>
         </div>
         <div class="grid-item">
-            <img src="https://cdn.shopify.com/s/files/1/1758/4293/files/eat_1_1.gif?14089" alt="">
-       <h3 >Eat</h3>
+            <img src="https://cdn.shopify.com/s/files/1/1758/4293/files/eat_1_1.gif?14089" class="img-fluid" alt="">
+       <h5>Eat</h5>
         </div>
         <div class="grid-item">
-            <img src="https://cdn.shopify.com/s/files/1/1758/4293/files/repeat---Copy.gif?14095" alt="">
-        <h3 >Repeat</h3>
+            <img src="https://cdn.shopify.com/s/files/1/1758/4293/files/repeat---Copy.gif?14095" class="img-fluid" alt="">
+        <h5>Repeat</h5>
         </div>
     </div>
 </div>
 
 <div class="content">
-    <h2>Our top chiefs are making these fresh meals right now!</h2>
-    <h4>Order some (or all) of these top meals and see why thousands of Canadians stock us in their fridge!</h4>
+    <br><h4>Our top chiefs are making these fresh meals right now!</h2>
+    <h5>Order some (or all) of these top meals and see why thousands of Canadians stock us in their fridge!</h4><br>
     <div class="grid-container-allmeals" >
          {{#each data}}
         <div class="topmeals"> 
-            <img src="/img/{{this.img}}" width="250px"> <br><br>
-            <span id="title"><b>{{this.title}}</b> <br><br></span>
+            <img src="/img/{{this.img}}" class="img-fluid"> <br>
+            <span id="title"><b>{{this.title}}</b><br></span>
             <span id="price" style="color: red;"><b>{{this.price}}</b><br></span>
         </div>
     {{/each}}
