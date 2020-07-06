@@ -59,19 +59,22 @@ hr {
 
 
 <div class="form" >
-    <form action="/">
+    <form action="/login" method="POST">
   <div class="container">
     <br>
     <h4 style="text-align: center;">Customer Login</h4>
     <hr>
 
-<img src="img/icon1.png" alt="" class="img-fluid">
+<img src="img/icon1.png" alt="Avatar" class="img-fluid">
+    {{#each errorMessages}}
+<div><p style="color: red;">&#10071;{{this}}</p></div>
+{{/each}}
     <hr>
     <label for="username"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="username" id="username" required>
+    <input type="text" placeholder="Enter Username" name="username" id="username">
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+    <input type="password" placeholder="Enter Password" name="psw" id="psw">
 
     <button type="submit" class="loginbtn">Login</button>
   </div>
