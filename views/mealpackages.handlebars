@@ -1,29 +1,22 @@
    <div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1>Bootstrap Tutorial</h1>      
-    <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing responsive, mobile-first projects on the web.</p>
-  </div>
-</div>
-  
-  <div class="hero-image">
-  <div class="hero-text">
-    <h1 style="font-size:90px; color: white; font-weight: bold; ">Get Your Meals Delivered.</h1>
-  <b>Check out our featured meal packages below</b>
+  <div class="containergif">
+   <h1 style="text-align:center; text-decoration: none; color: white;">Get Your Meals Delivered</h1><br>
+  <h5 style="text-align:center; text-decoration: none; color: white;" >Check out our featured meal packages below</h5>
   </div>
 </div>
 
 <div class="content">
-    <h2>Pick a package, choose your meals, achieve your goal - <b><i>it's that simple</i></b></h2>
+    <h4>Pick a package, choose your meals, achieve your goal - <b><i>it's that simple</i></b></h4><br>
 
-    <div class="grid-container-allmeals" >
+    <div class="grid-container-allmealss" >
          {{#each data}}
-        <div class="topmeals"> 
-            <img src="/img/{{this.img}}" width="250px"> <br><br>
-            <span id="title"><b>{{this.title}}</b><br></span>
-            <span id="category"><b>Category:</b> {{this.category}}<br></span>
-            <span id="description">{{this.description}}<br></span>
-            <span id="numofmeals"><b>Meals in package:</b> {{this.meals}}<br></span>
-            <span id="price" style="color: crimson;"><b>{{this.price}}</b><br></span>
+        <div class="topmealss"> 
+            <img src="/img/{{this.img}}"> <br><br>
+            <h5 id="title"><b>{{this.title}}</b><br></h5>
+            <h5 id="category"><b>Category:</b> {{this.category}}<br></h5>
+            <h5 id="description">{{this.description}}<br></h5>
+            <h5 id="numofmeals"><b>Meals in package:</b> {{this.meals}}<br></h5>
+            <h5 id="price" style="color: crimson;"><b>{{this.price}}</b><br></h5>
         </div>
     {{/each}}
     </div>
