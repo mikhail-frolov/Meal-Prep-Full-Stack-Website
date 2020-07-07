@@ -1,7 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-
+const information = {
+    name: "",
+    lname: "",
+    email: "",
+    pw: "",
+}
 
 router.get("/", (req, res) => {
 
@@ -52,10 +57,17 @@ router.post('/registration', (req, res) => {
         errors.push("Password must contain letters and numbers only");
     }
 
+
+    information.name = req.body.fn;
+    information.lname = req.body.ln;
+    information.email = req.body.email;
+    information.pw = req.body.psw;
+
     if (errors.length > 0) {
         res.render("registration", {
             title: "Registration Page",
-            errorMessages: errors
+            errorMessages: errors,
+            information: information,
         })
     } else {
 

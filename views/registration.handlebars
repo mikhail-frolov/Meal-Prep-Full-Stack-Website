@@ -1,4 +1,3 @@
-
 <style>
 
 * {
@@ -68,16 +67,16 @@ a {
     <h4 style="text-align: center;" >Create Account</h4>
 <hr>
     <label for="fn"><b>First Name</b></label>
-    <input type="text"  name="fn" id="fn" >
+    <input type="text"  name="fn" id="fn" value="{{information.name}}">
    
     <label for="ln"><b>Last Name</b></label>
-    <input type="text"  name="ln" id="ln" >
+    <input type="text"  name="ln" id="ln" value="{{information.lname}}">
 
     <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" id="email" >
+    <input type="text" placeholder="Enter Email" name="email" id="email" value="{{information.email}}">
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" >
+    <input type="password" placeholder="Enter Password" name="psw" id="psw" value="{{information.psw}}">
  {{#each errorMessages}}
 <div><p style="color: red;">Error: {{this}}&#10071;</p></div>
 {{/each}}
