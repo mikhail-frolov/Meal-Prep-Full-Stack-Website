@@ -26,7 +26,6 @@ app.use("/registration", formsController);
 app.use("/login", loginController);
 
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log("Web server is up and running");
 });
