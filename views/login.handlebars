@@ -14,8 +14,8 @@
 /* Full-width input fields */
 input[type=text], input[type=password] {
   width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
+  padding: 7px;
+  margin: 5px 0 10px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
@@ -52,30 +52,31 @@ hr {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 17%;
+  width: 13%;
+
 }
 
 </style>
 
 
 <div class="form" >
-    <form action="/login" method="POST">
+    <form action="/login/login" method="POST">
   <div class="container">
     <br>
     <h4 style="text-align: center;">Customer Login</h4>
     <hr>
 
 <img src="img/icon1.png" alt="Avatar" class="img-fluid">
-    {{#each errorMessages}}
-<div><p style="color: red;">&#10071;{{this}}</p></div>
-{{/each}}
+  
     <hr>
     <label for="username"><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="username" id="username">
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="psw" id="psw">
-
+  {{#each errorMessages}}
+<div><p style="color: red;">Error: {{this}}&#10071;</p></div>
+{{/each}}
     <button type="submit" class="loginbtn">Login</button>
   </div>
   
