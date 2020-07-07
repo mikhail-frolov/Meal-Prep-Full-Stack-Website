@@ -22,9 +22,10 @@ router.get("/registration", (req, res) => {
 });
 
 router.post('/registration', (req, res) => {
+    const errors = [];
     const regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
     const re = /^[A-Za-z0-9]+$/;
-    const errors = [];
+
 
     if (req.body.fn == "") {
         errors.push("First Name is required");
@@ -55,18 +56,17 @@ router.post('/registration', (req, res) => {
         res.render("registration", {
             title: "Registration Page",
             errorMessages: errors
-        });
+        })
     } else {
 
-        const { fn, ln, email } = req.body;
         const sgMail = require('@sendgrid/mail');
         sgMail.setApiKey(process.env.SENDGRID_API_KEY);
         const msg = {
-            to: `${email}`,
+            to: `${req.body.email}`,
             from: 'mishafrolov882000@gmail.com',
             subject: 'Registration Form',
             text: 'Welcome to the LiveFit!',
-            html: `Thank you ${fn} ${ln} for registering with Live Fit. Enjoy our amazing food!`
+            html: `Thank you for registering with Live Fit. Enjoy our amazing food!`
         };
         sgMail.send(msg)
             .then(() => {
