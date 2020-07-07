@@ -20,6 +20,7 @@ router.get("/login", (req, res) => {
 router.post('/login', (req, res) => {
 
     const errors = [];
+    const re = /^[A-Za-z0-9]+$/;
     if (req.body.username == "") {
         errors.push("Username is required");
     }
@@ -37,7 +38,7 @@ router.post('/login', (req, res) => {
         res.render("login", {
             title: "Login Page",
             errorMessages: errors
-        });
+        })
     } else {
         res.redirect("/");
     }
