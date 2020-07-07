@@ -74,7 +74,7 @@ router.post('/registration', (req, res) => {
         const sgMail = require('@sendgrid/mail');
         sgMail.setApiKey(process.env.SENDGRID_API_KEY);
         const msg = {
-            to: `${req.body.email}`,
+            to: 'mishafrolov882000@gmail.com',
             from: 'mishafrolov882000@gmail.com',
             subject: 'Registration Form',
             text: 'Welcome to the LiveFit!',
