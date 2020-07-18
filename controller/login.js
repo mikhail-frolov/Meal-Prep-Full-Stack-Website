@@ -8,7 +8,7 @@ const information = {
 
 router.get("/", (req, res) => {
 
-    res.render("login", {
+    res.render("login/login", {
         title: "Login Page"
     });
 
@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 
 router.get("/login", (req, res) => {
 
-    res.render("login", {
+    res.render("login/login", {
         title: "Login Page"
     });
 
@@ -43,7 +43,7 @@ router.post('/login', (req, res) => {
     information.pw = req.body.psw;
 
     if (errors.length > 0) {
-        res.render("login", {
+        res.render("login/login", {
             title: "Login Page",
             errorMessages: errors,
             information: information
