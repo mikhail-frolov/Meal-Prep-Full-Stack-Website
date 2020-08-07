@@ -1,3 +1,8 @@
+//to do: function for meals similar to email 
+// get meals similar to get users
+// make it work from MongoDB
+
+
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
