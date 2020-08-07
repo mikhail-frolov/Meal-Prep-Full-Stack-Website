@@ -24,29 +24,19 @@ app.use(clientSessions({
     activeDuration: 1000 * 60 // the session will be extended by this many ms each request (1 minute)
 }));
 
-let ensureLogin = (req, res, next) => {
-    if (!req.session.user) {
-        res.redirect("/login/login");
-    } else {
-        next();
-    }
-};
-
 //load controllers
 const generalController = require("./controller/general");
 const formsController = require("./controller/registration");
 const loginController = require("./controller/login");
-
+const dashboardController = require("./controller/dboard");
 
 app.use("/", generalController);
 app.use("/Registration", formsController);
 app.use("/Login", loginController);
-
+app.use("/Dashboard", dashboardController);
 
 db.initialize()
     .then(() => {
-
-        console.log("Great Success!");
         app.listen(PORT, () => {
             console.log("Web-Server is up and running!");
         })

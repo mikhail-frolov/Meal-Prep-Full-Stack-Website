@@ -90,7 +90,7 @@ module.exports.addUser = (data) => {
             fname: data.fname,
             lname: data.lname,
             password: data.password,
-            admin: false
+            admin: data.admin
         });
 
         bcrypt.genSalt(10)
@@ -103,7 +103,7 @@ module.exports.addUser = (data) => {
                         reject(err);
                     } else {
                         console.log("New User's Email: " + data.email);
-                        resolve();
+                        resolve(newUser);
                     }
                 });
             })
@@ -175,7 +175,7 @@ module.exports.validateUserRegistration = (data) => {
         } else {
             this.getUsersByEmail(data.email)
                 .then((user) => {
-                    data.errors.push("This email is already registered");
+                    data.errors.push("This email is already registered!");
                     reject(data);
                 })
                 .catch(() => {
@@ -188,8 +188,28 @@ module.exports.validateUserRegistration = (data) => {
 
 module.exports.validateUserLogin = (data) => {
     return new Promise((resolve, reject) => {
+        data.errors = [];
 
-        this.getUser({ email: data.email })
+        if (data.email == "") {
+
+            data.errors.push("Email is required");
+
+        }
+
+        if (data.password == "") {
+
+            data.errors.push("Password is required");
+
+        }
+
+        if (data.email == "" || data.email == "") {
+
+            reject(data);
+
+        }
+
+
+        this.getUsersByEmail(data.email)
             .then((user) => {
                 bcrypt
                     .compare(data.password, user[0].password)
@@ -197,17 +217,18 @@ module.exports.validateUserLogin = (data) => {
                         if (res) {
                             resolve(user[0]);
                         } else {
+                            data.errors.push("Wrong password or email, try again!");
                             reject(data);
                         }
                     })
                     .catch((err) => {
-                        console.log(err);
+                        console.log("Cannot compare passwords " + err);
                         reject(data);
                     });
             })
             .catch((err) => {
-                console.log(err);
+                console.log("Cannot get by email " + err);
                 reject(data);
             });
     });
-}
+};

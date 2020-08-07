@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const meals = require("../model/meals");
-
+const db = require("../model/db");
 
 //routes
 router.get("/", (req, res) => {
@@ -23,12 +23,5 @@ router.get("/mealspackages", (req, res) => {
     })
 });
 
-
-router.get("/dashboard", (req, res) => {
-
-    res.render("dashboard", {
-        title: "Dashboard Page"
-    });
-});
 
 module.exports = router;

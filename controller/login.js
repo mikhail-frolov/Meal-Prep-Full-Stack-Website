@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
-
+const db = require("../model/db");
 
 router.get("/", (req, res) => {
 
@@ -12,42 +11,31 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-    const information = {
-        email: "",
-        password: ""
+    let information = {
+
     };
-
-    const errors = [];
-    const re = /^[A-Za-z0-9]+$/;
-    if (req.body.email == "") {
-        errors.push("Email is required");
-    }
-
-    if (req.body.password == "") {
-        errors.push("Password is required");
-    }
-    if (req.body.password.length < 6 || req.body.password.length > 12) {
-        errors.push("Password must be 6 to 12 characters long");
-    } else if (!re.test(req.body.password)) {
-        errors.push("Password must contain letters and numbers only");
-    }
-
     information.email = req.body.email;
     information.password = req.body.password;
 
-    if (req.body.email == "" || req.body.password == "") {
-        //checking if passes info
-        console.log(information);
+    db.validateUserLogin(req.body).then((user) => {
+        req.session.user = user;
+        if (user.admin) {
 
+            res.redirect("/Dashboard/DataClerk");
+
+        } else {
+            res.redirect("/Dashboard/Customer");
+
+        }
+    }).catch((err) => {
         res.render("login/login", {
-            title: "Login Page",
-            errorMessages: errors,
-            information: information
-        });
-    } else {
-        res.redirect("/dashboard");
-    }
 
+            title: "Login Page",
+            errorMessages: data.errors,
+            information: information
+
+        });
+    });
 });
 
 module.exports = router;

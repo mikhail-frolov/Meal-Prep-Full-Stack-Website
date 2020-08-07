@@ -22,7 +22,7 @@ router.post("/", (req, res) => {
     };
 
     db.validateUserRegistration(req.body).then((data) => {
-        db.addUser(data).then(() => {
+        db.addUser(data).then((user) => {
             const sgMail = require('@sendgrid/mail');
             sgMail.setApiKey(process.env.SENDGRID_API_KEY);
             const msg = {
@@ -33,13 +33,24 @@ router.post("/", (req, res) => {
                 html: `Thank you for registering with Live Fit. Enjoy our amazing food!`
             };
             sgMail.send(msg);
-            res.redirect("/dashboard");
+
+            req.session.user = user;
+            if (user.admin) {
+
+                res.redirect("/Dashboard/DataClerk")
+
+            } else {
+
+                res.redirect("/Dashboard/Customer");
+
+            }
+
         }).catch((err) => {
-            console.log("Error: " + err);
+            console.log("Error in registration: " + err);
         });
     }).catch((data) => {
         res.render("login/registration", {
-            title: "Customer Registration Page",
+            title: "Registration Page",
             errorMessages: data.errors,
             information: information
         });
