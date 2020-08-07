@@ -6,12 +6,11 @@ const meals = require("../model/meals");
 //routes
 router.get("/", (req, res) => {
 
-
-
     res.render("home", {
         title: "Home Page",
         data: meals.getTopMeals()
     });
+
 });
 
 router.get("/mealspackages", (req, res) => {
@@ -24,5 +23,12 @@ router.get("/mealspackages", (req, res) => {
     })
 });
 
+
+router.get("/dashboard", (req, res) => {
+
+    res.render("dashboard", {
+        title: "Dashboard Page"
+    });
+});
 
 module.exports = router;

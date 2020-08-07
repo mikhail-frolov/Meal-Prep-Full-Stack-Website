@@ -1,15 +1,12 @@
 <style>
-
 * {
   box-sizing: border-box;
 }
-
 /* Add padding to containers */
 .container {
   padding: 10px;
   background-color: white;
 }
-
 /* Full-width input fields */
 input[type=text], input[type=password] {
   width: 100%;
@@ -19,18 +16,15 @@ input[type=text], input[type=password] {
   border: none;
   background: #f1f1f1;
 }
-
 input[type=text]:focus, input[type=password]:focus {
   background-color: #ddd;
   outline: none;
 }
-
 /* Overwrite default styles of hr */
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
-
 /* Set a style for the submit button */
 .registerbtn {
   background-color: #e8015a;
@@ -42,16 +36,13 @@ hr {
   width: 100%;
   opacity: 0.9;
 }
-
 .registerbtn:hover {
   opacity: 1;
 }
-
 /* Add a blue text color to links */
 a {
   color: dodgerblue;
 }
-
 /* Set a grey background color and center the text of the "sign in" section */
 .signin {
   background-color: #f1f1f1;
@@ -61,22 +52,22 @@ a {
 
 
 <div class="form">
-    <form action="/registration/registration" method="POST" id="formid">
+    <form action="/Registration" method="POST" id="formid">
   <div class="container">
     <br>
     <h4 style="text-align: center;" >Create Account</h4>
 <hr>
-    <label for="fn"><b>First Name</b></label>
-    <input type="text"  name="fn" id="fn" value="{{information.name}}">
+    <label for="fname"><b>First Name</b></label>
+    <input type="text"  name="fname" id="fname" value="{{information.fname}}">
    
-    <label for="ln"><b>Last Name</b></label>
-    <input type="text"  name="ln" id="ln" value="{{information.lname}}">
+    <label for="lname"><b>Last Name</b></label>
+    <input type="text"  name="lname" id="lname" value="{{information.lname}}">
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" id="email" value="{{information.email}}">
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" value="{{information.psw}}">
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" id="password" value="{{information.password}}">
  {{#each errorMessages}}
 <div><p style="color: red;">Error: {{this}}&#10071;</p></div>
 {{/each}}
@@ -87,7 +78,7 @@ a {
   </div>
   
   <div class="container signin">
-    <p>Already have an account? <a href="#">Sign in</a>.</p>
+    <p>Already have an account? <a href="/login">Sign in</a>.</p>
   </div>
 </form>
 </div>
