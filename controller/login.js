@@ -17,25 +17,27 @@ router.post("/", (req, res) => {
     information.email = req.body.email;
     information.password = req.body.password;
 
-    db.validateUserLogin(req.body).then((user) => {
-        req.session.user = user;
-        if (user.admin) {
+    db.validateUserLogin(req.body)
+        .then((user) => {
+            req.session.user = user;
+            if (user.admin) {
 
-            res.redirect("/Dashboard/DataClerk");
+                res.redirect("/Dashboard/DataClerk");
 
-        } else {
-            res.redirect("/Dashboard/Customer");
+            } else {
+                res.redirect("/Dashboard/Customer");
 
-        }
-    }).catch((err) => {
-        res.render("login/login", {
+            }
+        })
+        .catch((user) => {
+            console.log(user.errors);
+            res.render("login/login", {
 
-            title: "Login Page",
-            errorMessages: data.errors,
-            information: information
+                title: "Login Page",
+                errorMessages: user.errors,
+                information: information
 
+            });
         });
-    });
 });
-
 module.exports = router;

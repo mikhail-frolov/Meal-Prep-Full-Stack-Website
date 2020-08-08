@@ -222,7 +222,7 @@ module.exports.validateUserLogin = (data) => {
                         if (res) {
                             resolve(user[0]);
                         } else {
-                            data.errors.push("Wrong password or email, try again!");
+                            data.errors.push("Wrong password or email, try again");
                             reject(data);
                         }
                     })
@@ -233,6 +233,7 @@ module.exports.validateUserLogin = (data) => {
             })
             .catch((err) => {
                 console.log("Cannot get by email " + err);
+                data.errors.push("Wrong password or email, try again");
                 reject(data);
             });
     });
