@@ -1,6 +1,22 @@
+<style>
+    .addbtn {
+  background-color: #e8015a;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  opacity: 0.9;
+}
+.addbtn:hover {
+  opacity: 1;
+}
+
+</style>
 <div class="content">
     <br><br><h4>The list of all meals</h4><hr>
-  {{#if found}}
+  {{#if added}}
     <div class="grid-container-allmealss" >
          {{#each data}}
         <div class="topmealss"> 
@@ -16,4 +32,5 @@
     {{else}}
         <h4>No meals have been added so far!</h4>
     {{/if}}
+    <button onclick="location.href='/Dashboard/DataClerk'" type="button" class="addbtn">Go Back</button>
     </div>

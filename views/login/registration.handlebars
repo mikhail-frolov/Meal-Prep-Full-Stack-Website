@@ -67,16 +67,12 @@ a {
     <input type="text" placeholder="Enter Email" name="email" id="email" value="{{information.email}}">
 
     <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" id="password" value="{{information.password}}">
-
-<label for="admin"><b>Are you a clerk?</b></label>
-        <input type="checkbox" name="admin" value="true"> <b>yes</b>       
+    <input type="password" placeholder="Enter Password" name="password" id="password" value="{{information.password}}">   
 
  {{#each errorMessages}}
 <div><p style="color: red;">Error: {{this}}&#10071;</p></div>
 {{/each}}
     <hr>
-    <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
     <button type="submit" class="registerbtn">Register</button>
   </div>

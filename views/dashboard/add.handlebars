@@ -1,37 +1,89 @@
-<form class="modal-content" action="/Registration" method="POST">
+<style>
+* {
+  box-sizing: border-box;
+}
+/* Add padding to containers */
+.container {
+  padding: 10px;
+  background-color: white;
+}
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 7px;
+  margin: 5px 0 10px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+/* Set a style for the submit button */
+.addbtn {
+  background-color: #e8015a;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+.addbtn:hover {
+  opacity: 1;
+}
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+</style>
+
+<form class="modal-content" action="/Dashboard/Add" method="POST" enctype="multipart/form-data">
     <div class="container">
-        <br><h1>Adding New Package</h1><hr>
+        <br><h1>Form to add a new package</h1><hr>
+
+         {{#if ifAdded}}
+            <h2>You have added a new package to the DataBase!</h2>
+        {{/if}}
+
+ {{#if error}}
+            <h5 style="color: red;">Error: All fields have to be filled!&#10071;</h5>
+ {{/if}}
+
         <label for="title"><b>Title</b></label>
-        <input type="text" placeholder="Enter Title" name="title" value="{{formD.title}}">
+        <input type="text" placeholder="Enter Title" name="title" value="{{information.title}}">
 
-        <div class="errors">{{titleError}}</div>
-
-        <label for="cat"><b>Category</b></label>
-        <input type="text" placeholder="Enter Category" name="cat" value="{{formD.cat}}">
-
-        <div class="errors">{{catError}}</div>
+        <label for="category"><b>Category</b></label>
+        <input type="text" placeholder="Enter Category" name="category" value="{{information.category}}">
 
         <label for="price"><b>Price</b></label>
-        <input type="text" placeholder="Enter Price" name="price" value="{{formD.price}}">
+        <input type="text" placeholder="Enter Price (ex.: 123.99)" name="price" value="{{information.price}}">
 
-        <div class="errors">{{priceError}}</div>
+        <label for="meals"><b>Number of Meals</b></label>
+        <input style="width: 5em;" type="number" name="meals" value="{{information.meals}}">
+<br>
+        <label for="description"><b>Description</b></label>
+        <input type="text" placeholder="Enter Description" name="description" value="{{information.description}}">
 
-        <label for="nmeals"><b>Number of Meals</b></label>
-        <input type="number" placeholder="Enter Number of Meals" name="nmeals" value="{{formD.nmeals}}">
+        <label for="picture"><b>Photo</b></label>
+        <input type="file" name="picture">
 
-        <div class="errors">{{nmealsError}}</div>
+        <label for="top"><b>Top Meal?</b></label>
+        <input  type="checkbox" name="top" value="true"> <b>Yes</b>
 
-        <label for="desc"><b>Description</b></label>
-        <input type="text" placeholder="Enter Description" name="desc" value="{{formD.desc}}">
-
-        <div class="errors">{{descError}}</div>
-
-        <label for="top"><b>Is it a top meal?</b></label>
-        <input type="checkbox" name="top" value="true"> <b>yes</b>
-
-        <div class="errors"></div>
-
-        <button type="submit">Add</button>
-
+        <button type="submit" class="addbtn">Add</button>
+    <button onclick="location.href='/Dashboard/DataClerk'" type="button" class="addbtn">Go Back</button>
     </div>
 </form>

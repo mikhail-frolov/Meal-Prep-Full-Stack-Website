@@ -1,19 +1,35 @@
+<style>
+    .btn {
+  background-color: #e8015a;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 70%;
+  opacity: 0.9;
+}
+  .button {
+  background-color: #e8015a;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  opacity: 0.9;
+}
+</style>
 <br><br><br>
-<br><br><br>
+
 <div class="content">
 
+    <h3>Data Entry Clerk: {{user.fname}} {{user.lname}}</h3><br><h3>Please, choose one of the options!</h3><br><br>
+<button onclick="location.href='/Dashboard/View'" class="btn">View All The Meals</button>
+<button onclick="location.href='/Dashboard/Add'" class="btn">Add a New Meal</button>
+<button onclick="location.href='/Dashboard/Edit'" class="btn">Edit an Existing Meal</button>
 
-<button onclick="location.href='/Dashboard/View'" type="button">View</button>
-<button onclick="location.href='/Dashboard/Add'" type="button">Add</button>
-<button onclick="location.href='/Dashboard/Edit'" type="button">Edit</button>
-
-    <h2>We are happy to welcome you!</h2>
-    <h3>Enjoy our best food, {{user.fname}} {{user.lname}} !</h3><br><br>
     
-    <button onclick="location.href='/Dashboard/Logout'" type="button">Logout</button>
-    
-
-
-
-
+ <h5 style="margin-top: 2em;">When you are done, press the button below.</h5>
+    <button style="margin-bottom: 5em;" onclick="location.href='/Dashboard/Logout'" class="button">Logout</button>
 </div>

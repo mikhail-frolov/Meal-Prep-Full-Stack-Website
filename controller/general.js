@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const meals = require("../model/meals");
 const db = require("../model/db");
 
 //routes

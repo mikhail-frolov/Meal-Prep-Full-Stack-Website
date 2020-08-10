@@ -1,9 +1,25 @@
+<style>
+    .addbtn {
+  background-color: #e8015a;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 50%;
+  opacity: 0.9;
+}
+.addbtn:hover {
+  opacity: 1;
+}
+
+</style>
 <br><br><br>
-<br><br><br>
+
 <div class="content">
 
     <h2>We are happy to welcome you!</h2>
     <h3>Enjoy our best food, {{user.fname}} {{user.lname}} !</h3><br><br>
-    <button onclick="location.href='/Dashboard/Logout'" type="button">Logout</button>
+    <button onclick="location.href='/Dashboard/Logout'" type="button" class="addbtn">Logout</button>
     
 </div>

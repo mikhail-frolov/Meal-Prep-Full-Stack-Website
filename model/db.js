@@ -6,7 +6,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
-const fakeDB = require("./meals");
 
 let userSchema = new Schema({
     email: {
@@ -32,11 +31,11 @@ let userSchema = new Schema({
 
 let packageSchema = new Schema({
     title: String,
-    image: String,
-    price: Number,
     category: String,
-    noOfmeals: Number,
-    desc: String,
+    price: Number,
+    meals: Number,
+    description: String,
+    img: String,
     top: {
         type: Boolean,
         default: false
@@ -86,13 +85,13 @@ module.exports.getTopAllMeals = (top) => {
     });
 };
 
-module.exports.getMealsByTitle = (title) => {
+module.exports.getPackagesByTitle = (ttitle) => {
     return new Promise((resolve, reject) => {
-        Packages.find({ title: title })
+        Packages.find({ title: ttitle })
             .exec()
             .then((package) => {
                 if (package.length != 0) {
-                    resolve(package.map((package) => package.toObject()));
+                    resolve(package.map((ppackage) => ppackage.toObject()));
                 } else {
                     reject("No meals have been found");
                 }
@@ -104,46 +103,46 @@ module.exports.getMealsByTitle = (title) => {
     });
 };
 
-module.exports.validateNewPackage = function(data) {
+module.exports.validateNewPackage = (data) => {
     return new Promise((resolve, reject) => {
         data.errors = [];
-        const numbersCheck = /^[0-9.]$/;
+        const numbersCheck = /[0-9]+[.]?[0-9]*/;
         data.top = (data.top) ? true : false;
 
         let flag = true;
 
         if (data.title == "") {
-            data.errors.title.push("This field is required");
+            data.errors.push("Please, enter the Title");
             flag = false;
         }
 
         if (data.category == "") {
-            data.errors.category.push("This field is required");
+            data.errors.push("Please, enter the Category");
             flag = false;
         }
 
         if (data.price == "") {
-            data.errors.price.push("This field is required");
+            data.errors.push("Please, enter the Price");
             flag = false;
         } else {
 
             if (!data.price.match(numbersCheck)) {
-                data.errors.price.push("Numbers Only Accepted");
+                data.errors.push("Numbers Only Accepted");
                 flag = false;
             }
         }
 
         if (data.description == "") {
-            data.errors.description.push("This field is required");
+            data.errors.push("Please, enter the Description");
             flag = false;
         }
 
         if (!flag) {
             reject(data);
         } else {
-            this.getMealsByTitle(data.title)
+            this.getPackagesByTitle(data.title)
                 .then((meal) => {
-                    data.errors.title.push("An item with this title is already exists");
+                    data.errors.push("An item with this title is already exists");
                     reject(data);
                 })
                 .catch(() => {
@@ -154,15 +153,17 @@ module.exports.validateNewPackage = function(data) {
 }
 
 
-module.exports.addMeal = (meal) => {
+module.exports.addMeal = (data) => {
     return new Promise((resolve, reject) => {
-        var newPackage = new Packages({
-            title: meal.title,
-            category: meal.category,
-            price: meal.price,
-            meals: meal.meals,
-            description: meal.description,
-            top: meal.top
+        let newPackage = new Packages({
+            title: data.title,
+            category: data.category,
+            price: data.price,
+            meals: data.meals,
+            description: data.description,
+            top: data.top,
+            img: data.img
+
         });
 
         newPackage.save((err) => {
@@ -209,7 +210,7 @@ module.exports.addUser = (data) => {
     });
 }
 
-module.exports.getUsersByEmail = function(Email) {
+module.exports.getUsersByEmail = (Email) => {
     return new Promise((resolve, reject) => {
         Users.find({ email: Email })
             .exec()
@@ -328,3 +329,26 @@ module.exports.validateUserLogin = (data) => {
             });
     });
 };
+
+//edit in dataclerk
+module.exports.editPackage = (data) => {
+    return new Promise((resolve, reject) => {
+        Packages.updateOne({ title: data.title }, {
+                $set: {
+                    title: data.title,
+                    category: data.category,
+                    price: data.price,
+                    meals: data.meals,
+                    description: data.description,
+                    top: data.top,
+                    img: data.img
+                }
+            })
+            .exec()
+            .then(() => {
+                console.log("The Package was successfully updated ;)");
+                resolve();
+            })
+            .catch((err) => { reject(err); });
+    });
+}
