@@ -62,12 +62,23 @@ module.exports.initialize = () => {
     });
 }
 
-module.exports.getTopMeals = () => {
+module.exports.getTopAllMeals = (top) => {
     return new Promise((resolve, reject) => {
-        Packages.find({ top: true })
+        if (top == true) {
+            GetMeals = Packages.find({ top: true });
+        } else {
+            GetMeals = Packages.find();
+        }
+
+        GetMeals
             .exec()
             .then((meals) => {
-                resolve(meals.map((meal) => meal.toObject()));
+                if (meals.length != 0) {
+                    resolve(meals.map((meal) => meal.toObject()));
+                } else {
+                    reject("No meals have been found");
+                }
+
             })
             .catch((err) => {
                 reject(err);
@@ -75,18 +86,97 @@ module.exports.getTopMeals = () => {
     });
 };
 
-module.exports.getPackages = () => {
+module.exports.getMealsByTitle = (title) => {
     return new Promise((resolve, reject) => {
-        Packages.find()
+        Packages.find({ title: title })
             .exec()
             .then((package) => {
-                resolve(package.map((package) => package.toObject()));
+                if (package.length != 0) {
+                    resolve(package.map((package) => package.toObject()));
+                } else {
+                    reject("No meals have been found");
+                }
+
             })
             .catch((err) => {
                 reject(err);
             });
     });
 };
+
+module.exports.validateNewPackage = function(data) {
+    return new Promise((resolve, reject) => {
+        data.errors = [];
+        const numbersCheck = /^[0-9.]$/;
+        data.top = (data.top) ? true : false;
+
+        let flag = true;
+
+        if (data.title == "") {
+            data.errors.title.push("This field is required");
+            flag = false;
+        }
+
+        if (data.category == "") {
+            data.errors.category.push("This field is required");
+            flag = false;
+        }
+
+        if (data.price == "") {
+            data.errors.price.push("This field is required");
+            flag = false;
+        } else {
+
+            if (!data.price.match(numbersCheck)) {
+                data.errors.price.push("Numbers Only Accepted");
+                flag = false;
+            }
+        }
+
+        if (data.description == "") {
+            data.errors.description.push("This field is required");
+            flag = false;
+        }
+
+        if (!flag) {
+            reject(data);
+        } else {
+            this.getMealsByTitle(data.title)
+                .then((meal) => {
+                    data.errors.title.push("An item with this title is already exists");
+                    reject(data);
+                })
+                .catch(() => {
+                    resolve(data);
+                });
+        }
+    });
+}
+
+
+module.exports.addMeal = (meal) => {
+    return new Promise((resolve, reject) => {
+        var newPackage = new Packages({
+            title: meal.title,
+            category: meal.category,
+            price: meal.price,
+            meals: meal.meals,
+            description: meal.description,
+            top: meal.top
+        });
+
+        newPackage.save((err) => {
+            if (err) {
+                console.log("Error: " + err);
+                reject(err);
+            } else {
+                console.log("Meal to add: " + data.title);
+                resolve(newPackage);
+            }
+        });
+    });
+}
+
 
 module.exports.addUser = (data) => {
     return new Promise((resolve, reject) => {

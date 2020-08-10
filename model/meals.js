@@ -1,4 +1,4 @@
-const meals = {
+/*const meals = {
 
     fakedb: [],
 
@@ -108,3 +108,4 @@ const meals = {
 
 meals.initializeDB();
 module.exports = meals;
+*/
