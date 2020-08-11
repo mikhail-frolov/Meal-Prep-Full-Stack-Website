@@ -108,4 +108,48 @@
 
 meals.initializeDB();
 module.exports = meals;
+
+
+<form class="modal-content" action="/Dashboard/Editing" method="POST" enctype="multipart/form-data">
+    <div class="container">
+        <br><h1>Form to Edit an Existing Package</h1><hr>
+        {{#if ifUpdate}}
+            <div><p style="color: red;">Success: Package is Updated&#10071;</p></div>
+        {{/if}}
+{{#if error}}
+          <div><p style="color: red;">Error: All fields have to be filled&#10071;</p></div>
+ {{/if}}
+     
+      <input type="hidden" placeholder="Enter Title" name="title" value="{{information.ttitle}}">
+        <label for="category">Category</label>
+        <input type="text" placeholder="Enter Category" name="category" value="{{information.category}}">
+
+
+        <label for="price">Price</label>
+        <input type="text" placeholder="Enter Price" name="price" value="{{information.price}}">
+
+
+        <label for="meals">Number of Meals</label>
+        <input type="number" placeholder="Enter Number of Meals" name="meals" value="{{information.meals}}">
+
+
+        <label for="description">Description</label>
+        <input type="text" placeholder="Enter Description" name="description" value="{{information.description}}">
+
+        
+        <label for="picture">Image</label>
+        <input type="file" name="picture">
+{{#if noImage}}
+        <div><p style="color: red;">Error: Image is Required&#10071;</p></div>
+ {{/if}}
+        <label for="top">Top meal?</label>
+        <input type="checkbox" name="top" value="true"> Yes
+
+        <button type="submit" class="addbtn">Edit Meal</button>
+ <button onclick="location.href='/Dashboard/DataClerk'" type="button" class="addbtn">Go Back</button>
+    </div>
+
+</form>
+
+
 */

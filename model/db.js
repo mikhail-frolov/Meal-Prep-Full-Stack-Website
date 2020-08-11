@@ -331,24 +331,72 @@ module.exports.validateUserLogin = (data) => {
 };
 
 //edit in dataclerk
-module.exports.editPackage = (data) => {
+
+module.exports.validateMealEdit = function(data) {
     return new Promise((resolve, reject) => {
+        data.errors = [];
+        let check = true;
+
+        data.top = (data.top) ? true : false;
+
+        if (data.img == "") {
+            data.errors.push("This field is required");
+            check = false;
+        }
+
+        if (data.title == "") {
+            data.errors.push("This field is required");
+            check = false;
+        }
+
+        if (data.category == "") {
+            data.errors.push("This field is required");
+            check = false;
+        }
+
+        if (data.price == "") {
+            data.errors.push("This field is required");
+            check = false;
+        } else {
+            var numbersonly = /[0-9]+[.]?[0-9]*/;
+            if (!data.price.match(numbersonly)) {
+                data.errors.push("Only Numbers alowed");
+                check = false;
+            }
+        }
+
+        if (data.description == "") {
+            data.errors.push("This field is required");
+            check = false;
+        }
+
+        if (!check) {
+            reject(data);
+        } else {
+            resolve(data);
+        }
+    });
+}
+
+module.exports.editMeal = (data) => {
+    return new Promise((resolve, reject) => {
+        data.top = (data.top) ? true : false;
         Packages.updateOne({ title: data.title }, {
                 $set: {
-                    title: data.title,
+                    img: data.img,
                     category: data.category,
                     price: data.price,
                     meals: data.meals,
                     description: data.description,
-                    top: data.top,
-                    img: data.img
+                    top: data.top
                 }
             })
             .exec()
             .then(() => {
-                console.log("The Package was successfully updated ;)");
+                console.log(`Meal ${data.title} has been updated`);
                 resolve();
-            })
-            .catch((err) => { reject(err); });
+            }).catch((err) => {
+                reject(err);
+            });
     });
 }

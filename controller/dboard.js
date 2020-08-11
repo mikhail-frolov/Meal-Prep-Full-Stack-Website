@@ -148,52 +148,47 @@ router.get("/Edit", function(req, res) {
 });
 
 router.post("/Edit", function(req, res) {
-    db.getMealsByTitle(req.body.title).then((meals) => {
+    db.getPackagesByTitle(req.body.title).then((meals) => {
         let information = {
-            ttitle: meals[0].title,
+            titleholder: meals[0].title,
             category: meals[0].category,
             price: meals[0].price,
             meals: meals[0].meals,
-            description: meals[0].description,
-            top: meals[0].top
+            description: meals[0].description
         };
-
         res.render("dashboard/editing", {
             title: "Meal Edit Page",
             information: information,
-            succUpdated: false,
+            Updated: false,
             user: req.session.user
         });
     }).catch((err) => {
-        if (err == "No meals found")
-            res.render("dashboard/edit", {
-                title: "Meal Edit Page",
-                ttitle: req.body.title,
-                titleError: "There is no package with such title.",
-                user: req.session.user
-            });
-        else
-            console.log(err);
+
+        res.render("dashboard/edit", {
+            title: "Meal Edit Page",
+            titleholder: req.body.title,
+            error: true,
+            user: req.session.user
+        });
     });
 });
 
 router.post("/Editing", upload.single("picture"), (req, res) => {
     let information = {
-        ttitle: req.body.title,
+        titleholder: req.body.title,
         category: req.body.category,
         price: req.body.price,
         meals: req.body.meals,
-        description: req.body.description,
-        top: req.body.top
+        description: req.body.description
     };
     try {
         req.body.img = req.file.filename;
     } catch (err) {
         res.render("dashboard/editing", {
             title: "Meal Edit Page",
-            imgError: "This field is required",
+            noImage: true,
             information: information,
-            succUpdated: false,
+            Updated: false,
             user: req.session.user
         });
         return;
@@ -202,29 +197,24 @@ router.post("/Editing", upload.single("picture"), (req, res) => {
         db.editMeal(data).then(() => {
             res.render("dashboard/editing", {
                 title: "Meal Edit Page",
-                formD: formD,
-                succUpdated: true,
+                information: information,
+                Updated: true,
                 user: req.session.user
             });
         }).catch((err) => {
             console.log("Error while editing a meal: " + err);
-            res.render("dashboard/editInfo", {
+            res.render("dashboard/editing", {
                 title: "Meal Edit Page",
                 information: information,
-                succUpdated: false,
+                Updated: false,
                 user: req.session.user
             });
         });
     }).catch((data) => {
         res.render("dashboard/editing", {
             title: "Meal Edit Page",
-            imgError: data.errors.img,
-            catError: data.errors.category,
-            priceError: data.errors.price,
-            nmealsError: data.errors.meals,
-            descError: data.errors.description,
             information: information,
-            succUpdated: false,
+            Updated: false,
             user: req.session.user
         });
     });

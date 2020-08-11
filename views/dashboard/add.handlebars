@@ -55,11 +55,11 @@ a {
         <br><h1>Form to add a new package</h1><hr>
 
          {{#if ifAdded}}
-            <h2>You have added a new package to the DataBase!</h2>
+            <p style="color: red;" >Success: You have added a new package&#10071;</p>
         {{/if}}
 
  {{#if error}}
-            <h5 style="color: red;">Error: All fields have to be filled!&#10071;</h5>
+            <p style="color: red;">Error: All fields have to be filled&#10071;</p>
  {{/if}}
 
         <label for="title"><b>Title</b></label>
@@ -80,7 +80,7 @@ a {
         <label for="picture"><b>Photo</b></label>
         <input type="file" name="picture">
 
-        <label for="top"><b>Top Meal?</b></label>
+        <label for="top"><b>Top Package?</b></label>
         <input  type="checkbox" name="top" value="true"> <b>Yes</b>
 
         <button type="submit" class="addbtn">Add</button>
