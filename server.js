@@ -1,3 +1,8 @@
+// https://webappassignment2.herokuapp.com
+// https://github.com/mikhail-frolov/Assignment2-git-project
+// Mikhail Frolov
+// 164788184
+
 const express = require('express');
 const exphbs = require('express-handlebars');
 const app = express();
